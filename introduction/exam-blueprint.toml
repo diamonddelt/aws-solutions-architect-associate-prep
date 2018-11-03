@@ -1,0 +1,12 @@
+# Exam Blueprint for AWS Certified Develop 2018
+
+Domain 1: Deployment - 22%
+Domain 2: Security - 26%
+Domain 3: Development with AWS Services - 30%
+Domain 4: Refactoring - 10%
+Domain 5: Monitoring and Troubleshooting - 12%
+
+
+Notes:
+- Not necessary to cover every single whitepaper in the 2018 blueprint, but an understanding of what 'blue/green' deployments are is important.
+- Always use roles - 'NEVER USE SECRET ACCESS KEYS IN CODE'
