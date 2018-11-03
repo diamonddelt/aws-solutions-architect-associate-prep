@@ -7,6 +7,7 @@ Notes, practice exam questions, and preparations for the AWS Solutions Architect
 * [IAM](./iam/notes.md)
 * [ELB](./elb/notes.md)
 * [EC2](./ec2/notes.md)
+* [VPC](./vpc/notes.md)
 * [Route53](./route53/notes.md)
 * [SQS](./sqs/notes.md)
 * [SWF](./swf/notes.md)
