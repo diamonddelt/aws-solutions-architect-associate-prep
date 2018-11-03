@@ -98,4 +98,10 @@ X - Xtreme memory
 - `Cold HDD SC1` - lowest cost storage for infrequently accessed workloads; typical usecase is a file server; _cannot be a boot volume_
 - `Magnetic Standard` - lowest cost per gigabyte of all EBS volume types that is _bootable_. Ideal for lowest cost applications where storage is not a concern and infrequent access.
 
-## Questions
+## Exam Tips
+
+1. Know the difference between `EBS Backed EC2 instances` vs `Instance Store` - the primary difference being that EBS backed instances have persistent data, because the EBS volume is a separate AWS object with it's own lifecycle, independent of the instance itself. Instance store is ephemeral - if you kill the instance, you lose the data too
+    1. You cannot `stop` instance backed volumes - they are wiped if you do. You `can` stop EBS volumes without losing data
+2. You need to know how to get the public IP address from an EC2 instance using the command line
+    1. `curl/wget http://169.254.169.254/latest/meta-data/`
+    2. You need to remember that the IP address is considered an `instance's METADATA, NOT USERDATA`
