@@ -105,3 +105,4 @@ X - Xtreme memory
 2. You need to know how to get the public IP address from an EC2 instance using the command line
     1. `curl/wget http://169.254.169.254/latest/meta-data/`
     2. You need to remember that the IP address is considered an `instance's METADATA, NOT USERDATA`
+3. You cannot launch an EBS-optimized EC2 instance with the root volume `encrypted`. You would need to make a snapshot of the root volume after the instance is already created, and use the `option to encrypt the snapshot`. Then, create a new instance with that encrypted, snapshotted volume.

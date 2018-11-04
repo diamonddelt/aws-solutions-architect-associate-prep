@@ -13,3 +13,8 @@ A VPC peering connection `does not act like a gateway or a VPN connection - it u
 1. You cannot peer two VPCs which have the same subnet class and CIDR block configuration - for example, `you cannot peer a 10.0.0.0/16 CIDR block VPC with a 10.0.0.0/24 CIDR block VPC.`
 2. Transitive Peering is NOT supported, meaning if you Peer VPC A -> VPC B, and VPC B -> VPC C, VPC A `cannot` communicate with VPC C. You can only communicate between two directly peered VPCs
 3. You cannot create a peering connection in `two different regions.`
+
+## Exam Tips
+
+1. You can only associate one route table with a subnet.
+2. Every route table has a local route for communication within the VPC over IPv4 or IPv6. You cannot modify or delete these routes (they are created automatically)
