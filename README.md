@@ -24,3 +24,7 @@ Notes, practice exam questions, and preparations for the AWS Solutions Architect
 * [OpsWorks](./opsworks/notes.md)
 * [Trusted Advisor](./trusted-advisor/notes.md)
 * [Suggestions From Past Exams](./user-feedback/notes.md)
+
+## Additional Preparation
+
+* Users state that taking multiple practice exams from WhizLabs and AWS's own practice exams was a good benchmark of knowledge, once you feel that you've studied enough
