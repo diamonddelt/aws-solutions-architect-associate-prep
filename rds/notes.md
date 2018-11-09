@@ -11,6 +11,21 @@ RDS is typically an OLTP and can be one of the following Relational database typ
 
 `Data Warehousing` - think Cognos, Jaspersoft, SSRS, Oracle Hyperion, SAP Netweaver, etc. This is used to pull in large and complex data sets and do queries on data. Uses `OLAP` (complex processing) vs. `OLAP` (simple processing). Data warehouses are designed differently than regular databases, because they are intended to have extremely costly queries run against them, while not impacting performance of an application reading from them at the same time. Therefore they commonly use the read-only replica pattern
 
+## Provisioned IOPS SSD Storage Chart
+
+The following table shows the range of Provisioned IOPS and storage size range for each database engine.
+
+```text
+Database Engine	Range of Provisioned IOPS	Range of Storage
+MariaDB	1,000–40,000 IOPS	100 GiB–32 TiB
+SQL Server, Enterprise and Standard editions	1000–32,000 IOPS	20 GiB–16 TiB
+SQL Server, Web and Express editions	1000–32,000 IOPS	100 GiB–16 TiB
+MySQL	1,000–40,000 IOPS	100 GiB–32 TiB
+Oracle	1,000–40,000 IOPS	100 GiB–32 TiB
+PostgreSQL	1,000–40,000 IOPS	100 GiB–32 TiB
+```
+
+
 ## Backups, Multi-AZ, Read-Replicas
 
 There are two types of database backups for AWS: `Automated Backups` and `Database Snapshots`.
@@ -46,7 +61,7 @@ You cannot currently encrypt an existing database instance. The work-around is:
 
 ## Differences between Multi-AZ and Read-Replicas
 
-Multi-AZ creates a disaster recovery, `exact-copy` of your production database in `another Availability Zone`. In the situation that the primary database fails, the `standby database becomes primary`, and `AWS automatically updates DNS to point to the IP address of standby database`, so you don't have to update or modify the domain name when that happens. `Data replication and synchronization is also handled automatically by AWS`. 
+Multi-AZ creates a disaster recovery, `exact-copy` of your production database in `another Availability Zone`. In the situation that the primary database fails, the `standby database becomes primary`, and `AWS automatically updates DNS to point to the IP address of standby database`, so you don't have to update or modify the domain name when that happens. `Data replication and synchronization is also handled automatically by AWS`.
 
 *Multi-AZ is for Disaster Recovery Only, not for performance.*
 
@@ -63,3 +78,4 @@ Read-replicas also `require automatic backups being turned`, and you can have `u
 ## Exam Tips
 
 - A common exam question is how to get an EC2 instance in one security group to be able to connect to an RDS instance in another security group. You will need to `open up port 3306 for the security group of the EC2 instance in the security group configuration 'inbound' section of EC2.`
+- Multi-AZ = think `automatic failover`
