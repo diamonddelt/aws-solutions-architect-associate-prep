@@ -31,6 +31,31 @@ When creating a VPC, you can one three possible private-network subnet classes /
 2. `All subnets in the default VPC have a route out to the internet`; you don't have to worry about setting that up or misconfiguring it
 3. Each EC2 instance has both a public and a private IP address
 
+## NAT Instances & NAT Gateways
+
+- *NAT Instance* - This is just an `EC2 instance` which you put into a `public subnet`, whose sole purpose is to route traffic through, to `protect other AWS resources in private subnets from public WAN traffic`. 
+
+You enable the traffic routing through the NAT instance by setting up the VPC route table entry for private subnets or the default route table to route `0.0.0.0/0` traffic through the NAT instance, instead of the Internet Gateway.
+
+When setting up a NAT instance, `you must disable source/destination checks`, because the NAT instance is never going to be a source or destination of traffic, but rather a middleman. _NAT instances are almost completely deprecated in favor of NAT Gateways._
+
+The question then becomes: _Why are NAT Instances bad?_ The answer is the amount of bottlenecks it introduces. 
+
+```text
+- If you use a single NAT instance to funnel all traffic from all private subnets through, you could instantly saturate the amount of bandwidth enabled on the instance type.
+- If the NAT instance dies, all of the WAN connectivity dies with it.
+- It is in a single AZ, and is not highly available.
+- You cannot automatically scale it, because adding new NAT instances requires manual updates to the route table entries on the VPC.
+- You are responsible for patching and protecting the NAT instance from viruses and malware, vs. AWS handling it for you with NAT Gateways
+- You have to place a NAT instance behind a security group - with NAT Gateways, you don't have to do this.
+```
+
+One of the few benefits of rolling your own NAT Instance is that `you can also use it as a bastion server (jump box).`
+
+- *NAT Gateway* - These operate on IPv4 only. You can setup an `Egress Only Internet Gateway` which works with IPv6. You still need to place a NAT Gateway in a public subnet, and you also need to allocate an elastic IP address to it. This is to allow AWS to scale it automatically, but let you point all of your traffic at a single IPv4 endpoint. They also scale traffic egressing out of them `up to 10Gbps`
+
+You do need to` create a NAT Gateway in each availability zone - they do not span AZs`.
+
 ## Importance of a Bastion Server
 
 1. A `bastion` (otherwise known as a jumpbox), is important because it is a single DMZ which acts a link between instances in a private subnet (segregated from public internet access), and a public subnet. These are commonly used to route traffic through, so the instances in the private subnet can make outbound connections to the internet (to do things like update, patch, or download files), but the bastion restricts traffic the other way.
