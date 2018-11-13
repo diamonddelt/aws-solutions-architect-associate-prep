@@ -61,6 +61,33 @@ You do need to` create a NAT Gateway in each availability zone - they do not spa
 
 1. A `bastion` (otherwise known as a jumpbox), is important because it is a single DMZ which acts a link between instances in a private subnet (segregated from public internet access), and a public subnet. These are commonly used to route traffic through, so the instances in the private subnet can make outbound connections to the internet (to do things like update, patch, or download files), but the bastion restricts traffic the other way.
 
+
+## Load Balancers
+
+There are currently three supported types of load balancers, but `classic load balancer` is previous generation and should not be used for any new apps going forward
+
+1. Classic load balancer
+2. Application load balancer
+3. Network load balancer
+
+All load balancers must be confiugred to use a `minimum of two public facing subnets` for high availability.
+
+## VPC Flow logs
+
+Flow logs can be thought of as a network or packet capture of all of the traffic going to and from (ingressing and egressing) your VPC (similar to a firewall appliance). `Flow log data is stored using CloudWatch logs`. You can view the data directly in CloudWatch once Flow Logs are enabled.
+
+You can create a flow log at three different levels:
+
+- VPC level
+- Subnet level
+- Network interface level
+
+You can specify the flow log to collect data on either `accepted, rejected, or both` types of traffic. In other words, packets that are allowed via security group/NACL, denied, or both.
+
+A flow log is represented by a `JSON policy document.`
+
+Some traffic cannot be captured - this includes `DHCP traffic`, traffic going to `169.254.169.254 for instance metadata`, and traffic to the r`eserved IP address for the default VPC router`
+
 ## What is VPC Peering and why should I care?
 
 VPC Peering is a connection betwen two VPCs that enables you to route traffic between them using private IP addresses. Without peering, the only way you could do this would be to address them over public IPs. Once peered, each VPC sees the other as if its within its own private network.
@@ -104,3 +131,6 @@ A VPC peering connection `does not act like a gateway or a VPN connection - it u
 10. There is `no transitive peering` in VPCs
 11. Network ACLs are `Stateless`, whereas Security Groups are `stateful`
 12. You `can block specific IP addresses using Network ACLs`, but you can't do that with Security Groups
+12. You `cannot enable flow logs for peered VPCs unless the peer VPC is in your account`.
+13. You cannot `tag` a flow log
+14. After you create a flow log, you `cannot change it's configuration`
