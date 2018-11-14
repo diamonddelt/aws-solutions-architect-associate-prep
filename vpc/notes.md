@@ -61,6 +61,10 @@ You do need to` create a NAT Gateway in each availability zone - they do not spa
 
 1. A `bastion` (otherwise known as a jumpbox), is important because it is a single DMZ which acts a link between instances in a private subnet (segregated from public internet access), and a public subnet. These are commonly used to route traffic through, so the instances in the private subnet can make outbound connections to the internet (to do things like update, patch, or download files), but the bastion restricts traffic the other way.
 
+You can harden a single bastion server with proper security protocols, and keep all of the actual work EC2 instances behind private subnets (and just use the bastion to RDP or SSH into them). This enables you to avoid replicating hardened security procedures on an ever changing fleet of EC2 instances.
+
+You can make bastion servers highly available by making one in each `subnet/Availability Zone`, and use `Route53 to switch` over to the bastion that hasn't gone down by using a single domain name for the bastion hosts.
+
 
 ## Load Balancers
 
@@ -134,3 +138,4 @@ A VPC peering connection `does not act like a gateway or a VPN connection - it u
 12. You `cannot enable flow logs for peered VPCs unless the peer VPC is in your account`.
 13. You cannot `tag` a flow log
 14. After you create a flow log, you `cannot change it's configuration`
+15. NAT instances are used to provide traffic to instances in private subnets, while Bastion servers are used as secure DMZ jump boxes to connect into secure resources behind private subnets.
