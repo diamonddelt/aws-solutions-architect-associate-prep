@@ -108,6 +108,15 @@ A VPC peering connection `does not act like a gateway or a VPN connection - it u
 4. Rules allowing or denying traffic are evaluated `in numerical order`, meaning that _rule 100 takes priority over rule 101, if rule 100 allows HTTP traffic and rule 101 denies it_
 5. Network ACLs are inspected and evaluated `BEFORE` security groups, so if you implement custom Network ACLs, make sure the rules make sense and do not conflict with security group rules, because they are applied first.
 
+## What is a VPC Endpoint?
+
+A `VPC Endpoint` can be thought of as an 'internal gateway' or *internal NAT Gateway* which allows instances in private subnets to communicate to other disparate services like S3, without traversing the WAN/Internet first.
+
+When creating a VPC Endpoint, you have to choose one of two types of endpoints:
+
+1. `interface endpoint` - this behaves like an `elastic network interface` (ENI) which serves as a point of entry for traffic
+2. `gateway endpoint` - this behaves like a `NAT gateway`, in that it is highly available, and does not need to be attached to a specific EC2 instance like an ENI
+
 ## Important VPC Peering Notes
 
 1. You cannot peer two VPCs which have the same subnet class and CIDR block configuration - for example, `you cannot peer a 10.0.0.0/16 CIDR block VPC with a 10.0.0.0/24 CIDR block VPC.`
