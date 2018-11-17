@@ -90,7 +90,7 @@ You can specify the flow log to collect data on either `accepted, rejected, or b
 
 A flow log is represented by a `JSON policy document.`
 
-Some traffic cannot be captured - this includes `DHCP traffic`, traffic going to `169.254.169.254 for instance metadata`, and traffic to the r`eserved IP address for the default VPC router`
+Some traffic cannot be captured - this includes `DHCP traffic`, Windows Activation instance traffic, traffic going to `169.254.169.254 for instance metadata`, and traffic to the `reserved IP address for the default VPC router`
 
 ## What is VPC Peering and why should I care?
 
@@ -144,7 +144,9 @@ When creating a VPC Endpoint, you have to choose one of two types of endpoints:
 10. There is `no transitive peering` in VPCs
 11. Network ACLs are `Stateless`, whereas Security Groups are `stateful`
 12. You `can block specific IP addresses using Network ACLs`, but you can't do that with Security Groups
-12. You `cannot enable flow logs for peered VPCs unless the peer VPC is in your account`.
-13. You cannot `tag` a flow log
-14. After you create a flow log, you `cannot change it's configuration`
-15. NAT instances are used to provide traffic to instances in private subnets, while Bastion servers are used as secure DMZ jump boxes to connect into secure resources behind private subnets.
+13. You `cannot enable flow logs for peered VPCs unless the peer VPC is in your account`.
+14. You cannot `tag` a flow log
+15. After you create a flow log, you `cannot change it's configuration`
+16. NAT instances are used to provide traffic to instances in private subnets, while Bastion servers are used as secure DMZ jump boxes to connect into secure resources behind private subnets.
+17. NAT instances must be put in a `public subnet`
+18. You will need `at least two public subnets to deploy an application load balancer`
