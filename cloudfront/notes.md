@@ -1,5 +1,8 @@
 # Cloudfront
 
+## What does it do?
+
+This is the AWS `Content Delivery Network.`
 
 ## Exam tips
 
