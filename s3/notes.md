@@ -51,6 +51,14 @@ An object contains the following
 *S3 'One Zone' IA* = `even lower cost than S3 IA` to store data, because you are `losing multiple Availability Zone resilience`. This is not a good choice for data storage that has durability requirements.
 *Glacier* = the `cheapest` option, but used `only for data archival` purposes. _Glacier Standard_ takes a `minimum of 3-5 hours to access data`, and you have to `pay a premium to expedite the time to retrieve the data`. You should only use this service when you do not plan to actually need to access stored data here quickly. Mostly for historical record keeping or audit purposes. The three time models to retrieve data from Glacier are `Standard`, `Expedited`, or `Bulk`.
 
+## Types of Encryption
+
+* `Client Side Encryption` (you encrypt the data before it's uploaded on your end)
+* Server Side Encryption
+    * Server side encryption using `AWS S3 Managed Keys` (SSE-S3)
+    * Server side encryption using `KMS` (Key Management Service) (SSE-KMS)
+    * Server side encryption with `Customer Provided Keys` (SSE-C)
+
 ## Charges for Usages
 
 - `Storage` = how much raw data are you storing? This costs per amount of data (GB)
@@ -64,3 +72,4 @@ An object contains the following
 1. S3 supports cross-region replication of buckets. When you do this, you have to enable `versioning`
 2. If you specify a bucket policy of `DENY` on a bucket, you need to explicity include all IAM resources which need access to the bucket (i.e the resources which `ARE NOT DENIED`). If you are trying to replicate a bucket in region A to region B, and you have setup a DENY bucket policy on bucket A, you need to ensure the role which does the replication is in the exclusion list.
 3. If you are given an exam question about choosing the lowest possible cost storage solution, and you don't care about retrieval times, use Glacier.
+4. `By default, buckets are private and all objects inside are private`
