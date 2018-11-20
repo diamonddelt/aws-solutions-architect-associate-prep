@@ -59,6 +59,13 @@ An object contains the following
     * Server side encryption using `KMS` (Key Management Service) (SSE-KMS)
     * Server side encryption with `Customer Provided Keys` (SSE-C)
 
+
+## Versioning
+
+* Once you enable versioning, `you cannot disable it; you can only suspend it`. Think carefully about enabling it when individual objects in your bucket are `huge` in size and prone to change - this will quickly increase storage costs
+* You can enable `MFA Delete`, which requires a multi-factor authentication token to be input from a mobile device in order to even delete an S3 object. `MFA delete requires your security credentials and a serial number + space + 6 digit auth code`
+
+
 ## Charges for Usages
 
 - `Storage` = how much raw data are you storing? This costs per amount of data (GB)
