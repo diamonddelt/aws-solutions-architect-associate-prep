@@ -64,7 +64,17 @@ An object contains the following
 
 * Once you enable versioning, `you cannot disable it; you can only suspend it`. Think carefully about enabling it when individual objects in your bucket are `huge` in size and prone to change - this will quickly increase storage costs
 * You can enable `MFA Delete`, which requires a multi-factor authentication token to be input from a mobile device in order to even delete an S3 object. `MFA delete requires your security credentials and a serial number + space + 6 digit auth code`
+* When you delete a bucket object with versioning enabled, you can see a `delete marker` displayed in the `versions` tab. This is a pointer to a delete action.
 
+## Setting up Cross Region Replication
+
+You will need to create another bucket in the region you want to copy data to. You can use the S3 interface to set the `source` bucket, or copy data based on `prefix or tags`. You can also use AWS Key Management Service (KMS) to `replicate encrypted objects.`
+
+* The `destination` bucket in CRR requires bucket `versioning to be enabled`.
+* You can only setup cross region replication in two `different` regions. This doesn't work for two buckets in the same region.
+* If you want to manually move data that has not changed from source to destination bucket in CRR, you need to use the AWS CLI, and move the data across using aws cli s3 commands.
+    * `$ aws s3 cp --recursive s3://mysourcebucket s3://mydestinationbucket`
+* *Delete markers or delete actions are not synchronized across buckets in cross-region replication*. This is a `security feature`, to prevent your backup bucket data from also being deleted if a malicious actor tampers with your primary bucket data.
 
 ## Charges for Usages
 
@@ -74,9 +84,22 @@ An object contains the following
 - `Data Transfer Pricing (Cross-Region Replication)` = it costs money to transfer S3 data from one region to another, because S3 is region specific. I.E `you have to pay to move S3 objects from us-east-1 to us-west-2`
 - `Transfer Acceleration` = uses the AWS CDN (CloudFront) to accelerate data transfer from S3 to a specific endpoint, by using the CloudFront endpoints to store the S3 objects there instead.
 
+## Lifecycle Management + Glacier Options
+
+Setting up a lifecycle management pipeline is a great idea for keeping costs low when using S3. Lifecycle management means setting up a series of predefined blocks of time before moving objects stored in S3 buckets into less costly storage options, the longer they exist (meaning the less important they may become).
+
+A typical transition pathway is moving from S3 Standard -> S3 IA Standard -> Glacier
+
+You add a lifecycle rule, which specifies the transition to rule for `current` objects being created, or `previous` versions of objects. You can specify the `days after creation` which signals the lifecycle management policy to move it to the specified `tier` of S3 storage.
+
+You can also configure `expiration rules` for `current` and `previous` versions of objects. This works the same way as transition rules, only it will delete the object versions after the specified period of days. This can also delete `expired delete markers` and `incomplete multi-part uploads`.
+
 ## Exam tips
 
 1. S3 supports cross-region replication of buckets. When you do this, you have to enable `versioning`
 2. If you specify a bucket policy of `DENY` on a bucket, you need to explicity include all IAM resources which need access to the bucket (i.e the resources which `ARE NOT DENIED`). If you are trying to replicate a bucket in region A to region B, and you have setup a DENY bucket policy on bucket A, you need to ensure the role which does the replication is in the exclusion list.
 3. If you are given an exam question about choosing the lowest possible cost storage solution, and you don't care about retrieval times, use Glacier.
 4. `By default, buckets are private and all objects inside are private`
+5. After you setup cross-region replication, the destination bucket `does not automatically` have all replicated objects stored inside. `It only replicates new or changed objects from the original/source bucket going forward.`
+6. You can use `lifecycle management in conjunction with versioning`, and it can be applied to `current and/or previous versions` of objects.
+7. For scenario based questions - `lifecycle management is primarily used to reduce S3 storage costs.`
