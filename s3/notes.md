@@ -94,6 +94,26 @@ You add a lifecycle rule, which specifies the transition to rule for `current` o
 
 You can also configure `expiration rules` for `current` and `previous` versions of objects. This works the same way as transition rules, only it will delete the object versions after the specified period of days. This can also delete `expired delete markers` and `incomplete multi-part uploads`.
 
+## Securing S3 Buckets
+
+The two main approaches are two use:
+
+- `Bucket Policies`- apply to the entire bucket
+- `Access Control Lists` - can be applied down to individual objects
+
+S3 buckets can also be configured to `write access logs to another S3 bucket`, for auditing purposes.
+
+## Encryption Types
+
+- In Transit: secured with SSL/TLS/HTTPS
+- At Rest:
+    - Server Side:
+        - S3 Managed Keys (`SSE-S3`) - Amazon manages a master key and regularly rotates it for you AES-256
+        - Key Management Service (`SSE-KMS`) - similar to SSE-S3 but with additional benefits and charges, such as an `envelope key`, which is a key that `encrypts your encryption key`. Also comes with an `audit trail out of the box` when it is used. You can also upload `your own keys`.
+        - Server Side Encryption with Customer Provided Keys (`SSE-C`) - the `customer takes responsibility for managing the encryption keys`, and AWS just manages the `encryption as the data is written to disk`
+    - Client Side Encryption:
+        - the user/client encrypts the data `before it is even uploaded to S3`
+
 ## Exam tips
 
 1. S3 supports cross-region replication of buckets. When you do this, you have to enable `versioning`
