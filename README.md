@@ -24,6 +24,7 @@ Notes, practice exam questions, and preparations for the AWS Solutions Architect
 * [RDS](./rds/notes.md)
 * [Redshift](./redshift/notes.md)
 * [SQS](./sqs/notes.md)
+* [Storage Gateway](./storage-gateway/notes.md)
 * [SWF](./swf/notes.md)
 * [Lambda](./lambda/notes.md)
 * [Elastic Transcoder](./elastic-transcoder/notes.md)
