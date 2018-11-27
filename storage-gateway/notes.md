@@ -21,3 +21,7 @@ Storage gateway works/supports VMware ESXi or Microsoft Hyper-V.
 - `Cached Volumes`: `stores only recent and frequently accessed data on prem in the storage gateway cache and upload buffer storage for faster access`; similar to a caching layer like Elasticache; infrequently accessed data in still stored in the cloud. These backups can go up to 32TB, and the storage volumes can be attached
 
 `Tape Gateway (VTL)` - create virtual `tapes` and send them to AWS Glacier; this is mostly used for archival purposes. Allows you to leverage existing tape-based backup infrastructure to create `virtual tapes`, which act a lot like virtual hard disks. These virtual tapes are created on Tape Gateway and is `configured with a media changer and tape drives`. Supported by `NetBackup, Backup Exec, Veeam`, etc
+
+## Exam Tips
+
+1. You need to basically know which type of storage is used for which scenario (tapes vs. on-prem iSCSI disk volumes vs. flat files)
