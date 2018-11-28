@@ -114,6 +114,12 @@ S3 buckets can also be configured to `write access logs to another S3 bucket`, f
     - Client Side Encryption:
         - the user/client encrypts the data `before it is even uploaded to S3`
 
+## Transfer Acceleration
+
+Uses CloudFront Edge locations to accelerate uploads to S3. You can upload to a distinct URL of an edge location, which will then transfer data from the edge location to S3.
+
+`your-bucket-name.s3-accelerate.amazonaws.com`
+
 ## Exam tips
 
 1. S3 supports cross-region replication of buckets. When you do this, you have to enable `versioning`
@@ -123,3 +129,6 @@ S3 buckets can also be configured to `write access logs to another S3 bucket`, f
 5. After you setup cross-region replication, the destination bucket `does not automatically` have all replicated objects stored inside. `It only replicates new or changed objects from the original/source bucket going forward.`
 6. You can use `lifecycle management in conjunction with versioning`, and it can be applied to `current and/or previous versions` of objects.
 7. For scenario based questions - `lifecycle management is primarily used to reduce S3 storage costs.`
+8. You can create a `static website` (no dynamic content) and host the files on S3. The `bucket objects need to be public for this to work`. There is a toggle on the S3 bucket options to enable static websites, where you provide the `index and error document`, and any `redirection rules for requests`.
+    S3 bucket website endpoint: `http://bucket-name.s3-website-us-east-1.amazonaws.zom` AKA `bucket-name.s3-website-region-name.amazonaws.com`
+9. You can use `bucket policies to make entire S3 buckets public`, including downloading files from the website.
