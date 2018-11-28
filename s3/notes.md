@@ -120,6 +120,8 @@ Uses CloudFront Edge locations to accelerate uploads to S3. You can upload to a 
 
 `your-bucket-name.s3-accelerate.amazonaws.com`
 
+Has the greatest impact and value to people who are uploading from remote locations relative to their region.
+
 ## Exam tips
 
 1. S3 supports cross-region replication of buckets. When you do this, you have to enable `versioning`
