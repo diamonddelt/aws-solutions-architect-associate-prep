@@ -84,6 +84,23 @@ X - Xtreme memory
 - `Cold HDD SC1` - lowest cost storage for infrequently accessed workloads; typical usecase is a file server; _cannot be a boot volume_
 - `Magnetic Standard` - lowest cost per gigabyte of all EBS volume types that is _bootable_. Ideal for lowest cost applications where storage is not a concern and infrequent access.
 
+## What is a Security Group?
+
+You can think of this as a `virtual firewall` that stands right in front of any EC2 instance. 
+
+Security groups are `stateful`. This means that any rule you allow in, is automatically allowed back out. You do not get the ability to specify allow or deny rules that pinhole specific IP addresses. As an example, if you have an `Inbound` rule that says to allow all HTTPS traffic to 0.0.0.0/0, but you have no `Outbound` rules, all HTTPS traffic can still flow in an out, because the `Inbound` rule works both ways.
+
+Remember: 
+```text
+Security Groups = STATEFUL
+Security Groups CANNOT DENY traffic
+
+Network ACLS = STATELESS
+Network ACLs CAN DENY traffic
+```
+
+`Any changes applied to a security group are immediately visible to any instances behind them.`
+
 ## Key Exam Terms
 
 - `On Demand` - you pay a fixed rate by the hour or by the second, with no commitment
