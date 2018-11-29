@@ -2,7 +2,7 @@
 
 ## What does EC2 provide
 
-- "Elastic Compute Cloud" - resizable compute in the cloud
+- "`Elastic Compute Cloud`" - resizable compute in the cloud; virtual machines in the cloud
 - Allows developers to build fault tolerant apps and isolate from common failure points. Allows the use of VPCs, load balancers, and security ACLs
 
 ## What are the pricing options?
@@ -106,3 +106,6 @@ X - Xtreme memory
     1. `curl/wget http://169.254.169.254/latest/meta-data/`
     2. You need to remember that the IP address is considered an `instance's METADATA, NOT USERDATA`
 3. You cannot launch an EBS-optimized EC2 instance with the root volume `encrypted`. You would need to make a snapshot of the root volume after the instance is already created, and use the `option to encrypt the snapshot`. Then, create a new instance with that encrypted, snapshotted volume.
+4. `Termination protection is disabled by default` - you must turn that on
+5. The `default action for a roob EBS volume` is to be `deleted when the instance is terminated`
+6. EBS `root` volumes for `DEFAULT AMIs` cannot be encrypted, but custom AMIs can encrypt the root volume. A default AMI is one of the pre-provided AWS flavors, such as AWS Linux or AWS Ubuntu HVM. If you add an additional volume to a `DEFAULT AMI`, you can encrypt that. 
