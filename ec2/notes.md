@@ -101,6 +101,13 @@ Network ACLs CAN DENY traffic
 
 `Any changes applied to a security group are immediately visible to any instances behind them.`
 
+## Selecting AMI types based on EBS vs Instance Volumes
+
+Instance Store = Ephemeral Storage; You can only attach up to 2 of these before spinning up an instance - you can't add them while it's running.
+EBS-backed Instance = root volume is stored on EBS.
+
+You cannot start/stop an instance store volume - you can only do that with an EBS-backed volume.
+
 ## Key Exam Terms
 
 - `On Demand` - you pay a fixed rate by the hour or by the second, with no commitment
