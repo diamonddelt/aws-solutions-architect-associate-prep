@@ -103,10 +103,24 @@ Network ACLs CAN DENY traffic
 
 ## Selecting AMI types based on EBS vs Instance Volumes
 
-Instance Store = Ephemeral Storage; You can only attach up to 2 of these before spinning up an instance - you can't add them while it's running.
-EBS-backed Instance = root volume is stored on EBS.
+All AMIs are categorized as either `Instance backed` or `EBS backed`.
+
+`Instance Store` = *Ephemeral* Storage; You can only attach up to 2 of these before spinning up an instance - you can't add them while it's running.
+`EBS-backed Instance` = root volume is stored on EBS. This means you can move it around to other instances, and generally can persist the data when the instance itself stops running.
 
 You cannot start/stop an instance store volume - you can only do that with an EBS-backed volume.
+
+AMIs are `not encrypted at rest`.
+
+## Encrypt Root Device Volumes
+
+You generally need to `make a snapshot of an EBS volume that is unencrypted`, then when you choose to `make a new copy` of the volume from the snapshot, you have the `option to encrypt` it at that time.
+
+If the volume was already encrypted before you took the snapshot, the `snapshot is also encrypted.`
+
+The snapshot -> restore process is also how you would move an EBS volume from one region to another.
+
+You cannot share encrypted snapshots, because the encryption key is contained within your AWS account.
 
 ## Key Exam Terms
 
