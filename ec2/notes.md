@@ -132,4 +132,10 @@ You cannot start/stop an instance store volume - you can only do that with an EB
 3. You cannot launch an EBS-optimized EC2 instance with the root volume `encrypted`. You would need to make a snapshot of the root volume after the instance is already created, and use the `option to encrypt the snapshot`. Then, create a new instance with that encrypted, snapshotted volume.
 4. `Termination protection is disabled by default` - you must turn that on
 5. The `default action for a roob EBS volume` is to be `deleted when the instance is terminated`
-6. EBS `root` volumes for `DEFAULT AMIs` cannot be encrypted, but custom AMIs can encrypt the root volume. A default AMI is one of the pre-provided AWS flavors, such as AWS Linux or AWS Ubuntu HVM. If you add an additional volume to a `DEFAULT AMI`, you can encrypt that. 
+6. EBS `root` volumes for `DEFAULT AMIs` cannot be encrypted, but custom AMIs can encrypt the root volume. A default AMI is one of the pre-provided AWS flavors, such as AWS Linux or AWS Ubuntu HVM. If you add an additional volume to a `DEFAULT AMI`, you can encrypt that.
+7. When you create an EC2 instance with EBS volumes attached, both the instances and volumes will be created in the `same availability zone`. `You cannot attach EBS volumes in AZ A to an EC2 instance in AZ B`.
+8. You can `upgrade the root device volume to a better volume type and increase the size on demand, with no downtime`. You `cannot downgrade seamlessly`, though.
+9. You can create a snapshot copy of an EBS volume in a different availability zone - this is the only way to copy an EBS volume over to other AZs.
+10. You can copy an AMI to another region by taking a snapshot of it, and making a new image from that snapshot in the different region.
+11. Snapshots are `point in time, incremental` copies of Volumes, and they only contain diffs of changes in Volumes. `Snapshots exist in S3.`
+12. `Snapshots of encrypted volumes are encrypted automatically`, and volumes `restored from encrypted snapshots are encrypted automatically`
