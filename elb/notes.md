@@ -49,6 +49,15 @@
     - In other words, think of *who the original request is being forwarded for*
     - Instances would want the original IP address of a request if they wanted to know location information or respond based on specific IP addresses
 
+## Creating an ELB (Classic)
+
+Specifying the `Ping Path` or the file for the ELB to `ping` to see if the instance is alive is part of configuring the `health check`. You also have to specify the `unhealthy threshold`, `healthy threshold`, `interval`, and `response timeout`
+
+`Response timeout` - how long to wait for a response after performing a health check ping
+`Interval` - how often to do the health check ping
+
+ALB (application load balancers) configure their routing rules with `target groups`. You can also add your own HTTP status codes. You need to register targets to the target groups.
+
 ## Key Exam Terms
 
 - `Application Load Balancer`
@@ -62,3 +71,6 @@
 1. Remember the three types of load balancers: `Classic (Elastic), Application, and Network`
 2. A `504 error means gateway timeout`, and the problem is at the web app, web server, or database. The `application stops responding within the load balancer's idle timeout period`
 3. If you need the `IPv4 address of the end user`, use the `X-Forwarded-For` header
+4. Once an EC2 instance is `out of service`, the load balancer will `automatically stop sending traffic` to it
+5. `Amazon manages the public IP address of the load balancers`, so you only ever disseminate the DNS name
+6. Instances monitored by ELB are considered `InService` or `OutofService`
