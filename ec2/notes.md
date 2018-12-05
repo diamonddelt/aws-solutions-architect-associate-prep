@@ -153,3 +153,4 @@ You cannot share encrypted snapshots, because the encryption key is contained wi
 10. You can copy an AMI to another region by taking a snapshot of it, and making a new image from that snapshot in the different region.
 11. Snapshots are `point in time, incremental` copies of Volumes, and they only contain diffs of changes in Volumes. `Snapshots exist in S3.`
 12. `Snapshots of encrypted volumes are encrypted automatically`, and volumes `restored from encrypted snapshots are encrypted automatically`
+13. It is `now possible to change a role on a running EC2 instance` directly from the EC2 instances dashboard

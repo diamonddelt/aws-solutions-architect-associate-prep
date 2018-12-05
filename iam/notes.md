@@ -31,3 +31,8 @@
 
 - What is CloudHSM?
 - How do I define and assign a temporary access IAM role?
+
+## Exam Tips
+
+1. Best practice is to `always create roles for EC2 instances` instead of storing credentials on the instance
+2. All roles are `global`, so you don't have to create a new role for each region
