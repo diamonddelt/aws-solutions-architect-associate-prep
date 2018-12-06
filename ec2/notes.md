@@ -154,3 +154,5 @@ You cannot share encrypted snapshots, because the encryption key is contained wi
 11. Snapshots are `point in time, incremental` copies of Volumes, and they only contain diffs of changes in Volumes. `Snapshots exist in S3.`
 12. `Snapshots of encrypted volumes are encrypted automatically`, and volumes `restored from encrypted snapshots are encrypted automatically`
 13. It is `now possible to change a role on a running EC2 instance` directly from the EC2 instances dashboard
+14. Finding the public IPV4 address of a running EC2 instance uses the meta-data endpoint: `curl http://169.254.169.254/latest/meta-data/public-ipv4`
+15. To see the bootstrap script provided to a running EC2 instance use the `user-data` endpoint: `curl http://169.254.169.254/latest/user-data/`
