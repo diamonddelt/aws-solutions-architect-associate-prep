@@ -128,6 +128,14 @@ You cannot share encrypted snapshots, because the encryption key is contained wi
 
 `Spread Placement Group` - a grouping of EC2 instances which are intentionally `placed on different pieces of underlying hardware/infrastructure (on purpose)`. They `can span multiple availability zones`. The primary usecase is for applications which have a small number of critical instances that `should, for whatever reason, not be deployed on the same underlying hardware`.
 
+## Creating an Autoscaling Group
+
+1. Create a launch configuration - similar process to creating an EC2 instance, but this doesn't spin up anything initially
+2. In the launch configuration, specify the group size (number of instances to start with), and the subnets to scale up or down in. By default, autoscaling with spread instances out evenly across all provided AZs
+3. You can modify the `Health Check grace period`, `instance protection` settings, or tell the `autoscaling group to receive ELB traffic` in `Advanced Details`
+4. Create an autoscaling group and specify the policies to scale between `minimum and maximum instance sizes`, as well as the `warm up time` and the `CloudWatch Alarm which, when triggered, signals the scale up or down action`
+5. Configure notification groups to send scale action notifications via `SNS`
+
 ## Key Exam Terms
 
 - `On Demand` - you pay a fixed rate by the hour or by the second, with no commitment
