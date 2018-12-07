@@ -122,6 +122,12 @@ The snapshot -> restore process is also how you would move an EBS volume from on
 
 You cannot share encrypted snapshots, because the encryption key is contained within your AWS account.
 
+## EC2 Placement Groups
+
+`Clustered Placement Group` - a grouping of EC2 instances within a `single Availability Zone (on purpose)`. These are typically put on the same high-powered network hardware infrastructure, and are only `recommended for instances which require low network latency`, `high network throughput, or both` (and thus benefit most from all instances being the shortest distance away i.e. in the same AZ). These `CANNOT span multiple availability zones`.
+
+`Spread Placement Group` - a grouping of EC2 instances which are intentionally `placed on different pieces of underlying hardware/infrastructure (on purpose)`. They `can span multiple availability zones`. The primary usecase is for applications which have a small number of critical instances that `should, for whatever reason, not be deployed on the same underlying hardware`.
+
 ## Key Exam Terms
 
 - `On Demand` - you pay a fixed rate by the hour or by the second, with no commitment
@@ -156,3 +162,8 @@ You cannot share encrypted snapshots, because the encryption key is contained wi
 13. It is `now possible to change a role on a running EC2 instance` directly from the EC2 instances dashboard
 14. Finding the public IPV4 address of a running EC2 instance uses the meta-data endpoint: `curl http://169.254.169.254/latest/meta-data/public-ipv4`
 15. To see the bootstrap script provided to a running EC2 instance use the `user-data` endpoint: `curl http://169.254.169.254/latest/user-data/`
+16. Placement groups must be `uniquely named within the AWS account`
+17. Only certain types of instances can be launched in a placement group: `Compute Optimized, GPU, Memory Optimized, Storage Optimized (basically anything specifically for high performance and not general purpose)`
+18. AWS recommends `homogenous EC2 instances within a placement group `i.e. they should all be the same instance type, size, etc
+19. You `cannot merge` placement groups.
+20. You `cannot move an existing instances into a placement group` - you can `only launch new instances` within placement groups. The workaround is to create an AMI from existing instances and re-launch into the placement group.
