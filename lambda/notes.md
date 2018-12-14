@@ -13,9 +13,9 @@ Highest level of abstraction which frees the developer from worrying about
 
 ## How can you use Lambda
 
-- Event-driven compute service where AWS Lambda runs code in response to an event. Examples include changing data in an S3 bucket or a DynamoDB table
+- Event-driven compute service where AWS Lambda `runs code in response to an event`. Examples include changing data in an S3 bucket or a DynamoDB table
 - A compute service to run code in response to HTTP requests using API gateway or API calls made using AWS SDKs.
-- Lambda functions can trigger other lambda functions. Chaining them together is a way to build complex web architectures to rival other stack types
+- `Lambda functions can trigger other lambda functions`. Chaining them together is a way to build complex web architectures to rival other stack types
 - A user can send an HTTP request -> API Gateway. API Gateway forwards that to a Lambda function, which does some work, returns it back to API Gateway, who then returns it back to the user in the HTTP response. This HTTP request/response workflow can and should be done in parallel
 
 ## What languages are supported by Lambda
