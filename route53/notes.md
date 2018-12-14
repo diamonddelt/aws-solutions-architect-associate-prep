@@ -19,11 +19,12 @@ When you buy a TLD such as `.com`, Route53 will create multiple Nameserver (NS) 
 There are 5 types of `routing policies` for a given `record set` in Route53:
 
 - `Simple` = default routing policy when making a new record set; most commonly used for `single-resource` domains, such as a single web server serving content at http://hello.com. There is no need to make decisions based on where to send traffic, because there is only one resource. If there are more than one resource in a simple routing policy, such as 3 webservers behind a load balancer, the behavior is `round-robin`
-- Weighted
-- Latency
+- `Weighted` = you can specify `arbitrary percentages of traffic` which are sent to various instances behind a DNS endpoint. `For example, you can say that 20% of all traffic ingressing should go to instances in us-east-1, and 80% of traffic ingressing should go to us-west-2`
+- `Latency` = allows you to specify r`ecord sets in different regions that are chosen based on lowest latency`. In other words, when Route53 receives a query for your site, it `chooses the record set in the region with the lowest latency to serve that request`.
 - Geolocation
 - Multivalue Answer
 
+There is a final type - `Failover`.
 
 
 ### Creating DNS Records
@@ -41,3 +42,4 @@ There are 5 types of `routing policies` for a given `record set` in Route53:
 2. A `naked domain name` is otherwise known as a domain name with `no prefix in front` of it i.e. `http://domain-name.com`
 3. A `zone apex` is the same as a `naked domain name`
 4. You can make an `Alias record` for a naked domain name / zone apex. You'd typically assign the `Alias target` to a load balancer
+5. In general, you have to choose a `single routing policy/strategy for your Route53 A-records`. You `can't mix and match weighted records with latency based routing` records, for example.
