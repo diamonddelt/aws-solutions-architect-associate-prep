@@ -16,15 +16,15 @@ Route53 is a `global` service
 
 When you buy a TLD such as `.com`, Route53 will create multiple Nameserver (NS) records at multiple other TLDs, such `.co.uk`, `.net`, and `.org`. This is to prevent an outage of your particular domain name if one of the top-level domains goes down.
 
-There are 5 types of `routing policies` for a given `record set` in Route53:
+There are 7 types of `routing policies` for a given `record set` in Route53:
 
 - `Simple` = default routing policy when making a new record set; most commonly used for `single-resource` domains, such as a single web server serving content at http://hello.com. There is no need to make decisions based on where to send traffic, because there is only one resource. If there are more than one resource in a simple routing policy, such as 3 webservers behind a load balancer, the behavior is `round-robin`
 - `Weighted` = you can specify `arbitrary percentages of traffic` which are sent to various instances behind a DNS endpoint. `For example, you can say that 20% of all traffic ingressing should go to instances in us-east-1, and 80% of traffic ingressing should go to us-west-2`
 - `Latency` = allows you to specify r`ecord sets in different regions that are chosen based on lowest latency`. In other words, when Route53 receives a query for your site, it `chooses the record set in the region with the lowest latency to serve that request`.
 - `Failover` = this routing policy will redirect traffic to instances depending on the health of the `primary` region. If the `primary` region goes down, it will route traffic to a `standby` or `secondary` region/instance. This involves creating two record sets: the primary and the secondary
-- Geolocation
-- Multivalue Answer
-
+- `Geolocation` = sends traffic to the location `where DNS queries originate` i.e. if a user hits the route53 endpoint from Europe, the EC2 instances which are in the EU regions will serve that traffic.
+- `Geoproximity` = sends traffic to instances based on latitude and longitudinal lines on a globe
+- `Multivalue Answer` = all of the previous routing policies involve a single record set serving traffic at any one time, but multivalue answer allows you to `group multiple record sets (AKA multiple IP addresses/domains) in a response from the Route53 DNS resolver`. So when a user queries Route53 for your domain, they could `receive different answers at any given time`. This is useful if one record sets (IP address/domain) becomes unavailable when a user queries it - they could just reissue the query and intentionally not cache the response, and they could get a different answer which actually works. Multivalue answer `allows you to setup 8 health checks for each record set returned in the multivalue response`, which can `automatically remove records` from a response if they fail the health checks.
 
 ### Creating DNS Records
 
