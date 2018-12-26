@@ -27,3 +27,20 @@
 ## Security Models for Applications
 
 - Leverage the AWS EC2 Security Groups as a firewall when possible, locking down `web servers to port 80 and 443`, only allowing` SSH port 22 to app servers` within a corporate intranet or VPN, and `deny all access to DB servers` from any source other than the application itself
+
+## Five Pillars
+
+- Security
+- Reliability
+- Performance Efficiency
+- Cost Optimization
+- Operational Excellence
+
+## General Principles
+
+- Stop guessing your capacity needs, but rather build in the ability to scale up or out based on real-world demand
+- Always test systems at _production scale_ i.e. test systems as if they were deployed to production
+- Automate architectural processes and systems so you can experiment and build up/tear down easier
+- Allow for evolutionary architectures (i.e. systems that can be expanded upon when new opportunities/business materializes, without having to do more upfront investing)
+- Data-driven architectures are preferred (i.e. systems which are designed around metrics and real-world data to support the architecture choices, as opposed to personal preferences)
+- Improve through `game days`
