@@ -44,3 +44,46 @@
 - Allow for evolutionary architectures (i.e. systems that can be expanded upon when new opportunities/business materializes, without having to do more upfront investing)
 - Data-driven architectures are preferred (i.e. systems which are designed around metrics and real-world data to support the architecture choices, as opposed to personal preferences)
 - Improve through `game days`
+
+## Security Pillar
+
+- Apply security at every level of the architecture (EC2 instances, security groups, network layer, etc)
+- Enable logging, monitoring, and traceability (find out where attacks come from)
+- If a security event is triggered, automate as much as possible responses to those events (including lock-down procedures, fail-overs, and fail-safes)
+- Automate security best practices (examples being created a `hardened` base AMI, and spin up instances from that AMI)
+
+## Security Pillar - Shared Responsibility Model
+
+- The customer is typically responsible for `data` on AWS, as well as IAM configuration, OS, network, and firewall configuration, as well as choosing an encryption and network traffic protection method
+  - `Security IN the cloud`
+- AWS is typically responsible for `hardware and service offerings`, such as compute, storage, database, networking primitives, as well as the globally available regions, AZs, and edge locations
+  - `Security OF the cloud`
+
+## Security Pillar - Definitions
+
+- `Data protection`
+  - Classify your data into security `categories`, like public, sensitive, private, and implement a principle of least privileged access to secure data
+  - Most importantly, `encrypt everything` when possible
+  - Questions to ask
+    - How are you encrypting and protecting your data `at rest`, and `in transit (SSL)`?
+- `Privilege Management`
+  - Ensures only authorized and authenticated users can access resources
+  - Uses ACLs, Role-based access controls, and policies
+  - Questions to ask
+    - How are you protecting access and using root account credentials?
+    - How are you controlling human access to the AWS CLI or console
+    - How are you limiting access from services, apps, and third-parties to AWS resources?
+    - How are you managing keys and credentials?
+- Infrastructure protection
+  - How do you protect your data center _outside of the cloud_ ? Things like RFID controls, CCTV cameras, door locks, etc
+  - Questions to ask
+    - How are you enforcing network and host-level boundary protection?
+    - How are you enforcing AWS service-level protection (password protection policies, etc)
+    - How are you protecting EC2 instance operating systems (antivirus/antimalware)
+- Detective controls
+  - Use tooling from AWS to detect or identify security breaches/threats, such as AWS CloudTrail, CloudWatch, Config, S3, and Glacier
+  - Questions to ask
+    - How are you capturing and analyzing AWS logs?
+
+## Security Pillar - Exam Tips
+- 4 areas: Data protection, Privilege Management, Infrastructure protection, Detective controls
