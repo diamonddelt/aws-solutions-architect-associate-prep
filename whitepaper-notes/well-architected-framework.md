@@ -74,16 +74,50 @@
     - How are you controlling human access to the AWS CLI or console
     - How are you limiting access from services, apps, and third-parties to AWS resources?
     - How are you managing keys and credentials?
-- Infrastructure protection
+- `Infrastructure protection`
   - How do you protect your data center _outside of the cloud_ ? Things like RFID controls, CCTV cameras, door locks, etc
   - Questions to ask
     - How are you enforcing network and host-level boundary protection?
     - How are you enforcing AWS service-level protection (password protection policies, etc)
     - How are you protecting EC2 instance operating systems (antivirus/antimalware)
-- Detective controls
+- `Detective controls`
   - Use tooling from AWS to detect or identify security breaches/threats, such as AWS CloudTrail, CloudWatch, Config, S3, and Glacier
   - Questions to ask
     - How are you capturing and analyzing AWS logs?
 
 ## Security Pillar - Exam Tips
 - 4 areas: Data protection, Privilege Management, Infrastructure protection, Detective controls
+
+## Reliability Pillar
+
+Basically, the reliability pillar is all about making sure your infrastructure and AWS resources have fail-safes built in to ensure that failure in individual components does not actually bring down overall service.
+
+- `Foundations`
+  - You should test recovery procedures and automate failure recovery systems when possible
+  - Scale horizontally to increase aggregate system availability
+  - If you guess capacity, it can either be over or under-provisioned. Either case hurts you (with under being the worst from an SLO perspective)
+  - It's important to acknowledge the `service limits` imposed by AWS on new accounts by default. These can be modified (usually) by requesting changes via ticket.
+  - Systems Involved - IAM, VPC
+  - Questions
+    - How are you managing service limits for your account (is there a person assigned to monitor this?)
+    - How did you design your network topology?
+    - Do you have an escalation path to deal with technical issues if they arise?
+- `Change Management`
+  - Automating change management is very possible with AWS, and can be done in lock-step with auditing for compliance
+  - CloudWatch and CloudTrail are primary offerings here for monitoring and auditing, respectively
+  - Systems Involved - CloudTrail
+  - Questions
+    - How does your system adapt to changes in demand?
+    - How are you monitoring AWS resources?
+    - How are you executing change management?
+- `Failure Management`
+  - Architect your systems and solutions with the assumption that failure `will` occur
+  - Have regular post-mortems about failures and learn from them, and improve systems to account for those failures next time
+  - Systems Involved - CloudFormation
+  - Questions
+    - How are you backing up your data?
+    - How does your system withstand component failures?
+    - How are you planning for recovery?
+
+## Reliability Pillar - Exam Tips
+- 3 areas: Foundations, Change Management, Failure Management
