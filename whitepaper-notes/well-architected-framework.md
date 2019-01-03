@@ -121,3 +121,31 @@ Basically, the reliability pillar is all about making sure your infrastructure a
 
 ## Reliability Pillar - Exam Tips
 - 3 areas: Foundations, Change Management, Failure Management
+
+## Performance Efficiency Pillar
+
+How to efficiently use cloud resources and keep up with evolving technologies and standards
+
+- Democratize advanced technologies
+- Go global in minutes
+- Use serverless architectures when possible
+- Experiment more often
+
+## Performance Efficiency - Best Practices
+
+- `Compute` - choose the best virtual compute and RAM for your needs (this depends on your application)
+  - Questions
+    - How do you select the appropriate instance type for your system?
+    - How do you ensure that you continue to have the most appropriate instance type as new instance types come out (EC2)
+  - Systems involved: Autoscaling
+- `Storage` - storage best practices depends on multiple factors { `access method: block, file, or object | patterns of access: random, sequential | throughput required | frequency of access: online, offline, archived | frequency of updates | availability | durability` }
+  - Questions
+    - How do you select appropriate storage solution for your system?
+    - How do you ensure you have the appropriate storage as new storage types come out?
+    - How do you measure and manage performance, read/write efficiency, and database types and how they impact performance
+  - Systems involved: EBS, S3, Glacier, RDS, DynamoDB, Redshift
+- `Space/Time trade-off` - you can utilize other services besides pure storage to improve data retrieval, including direct-connect (to improve VPN latency), Elasticache (to reduce access times of frequently used KV pairs), CloudFront (to improve client-side resource request response time)
+  - Questions
+    - How to select appropriate solution now, as well as ensure you keep up with latest advancements in caching/proximity
+    - How do you monitor proximity/caching solutions to ensure they meet demand and perform as expected?
+  - Systems involved: Elasticache, CloudFront, RDS Read-Replicas, Direct Connect
