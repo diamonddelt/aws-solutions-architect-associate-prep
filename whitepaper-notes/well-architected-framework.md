@@ -149,3 +149,22 @@ How to efficiently use cloud resources and keep up with evolving technologies an
     - How to select appropriate solution now, as well as ensure you keep up with latest advancements in caching/proximity
     - How do you monitor proximity/caching solutions to ensure they meet demand and perform as expected?
   - Systems involved: Elasticache, CloudFront, RDS Read-Replicas, Direct Connect
+
+## Cost Optimization
+
+Cost optimization is all about reducing costs to a minimum while meeting business objectives.
+
+## Cost Optimization - Design Principles
+
+- Transparently explain/attribute expenses (i.e. this is what each department spent via cost explorer)
+- Use managed services to reduce cost of ownership
+- Trade capital expenses for operating expenses (instead of buying an entire server outright, you lease it by the hour you use it)
+- Stop spending money on datacenter operations
+
+## Definitions
+
+- Matched supply and demand: you should align supply with demand, and use services to alert you when you need more resources, when you are using too many, and serverless resources that only trigger based on need
+- Cost-effective resources: always use the right instance type for cost savings; an instance too large costs more than you need, and too small might cause an outage causing you penalties
+- Expenditure awareness: cloud introduces a need to be proactive about usage and cost, because the supply is unlimited; if you aren't monitoring what you are using, the costs could escalate quickly and surprise you. Billing alerts are a must to set up.
+    - What controls do you have in place to govern your cost usage? How do you monitor and decommission resources no longer needed?
+- Optimizing over time: keep track of changes in AWS over time, and keeping tabs on the newer services to see if a newer offering makes more sense now for your unique business model
