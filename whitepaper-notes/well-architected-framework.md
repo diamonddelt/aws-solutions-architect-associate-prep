@@ -168,3 +168,22 @@ Cost optimization is all about reducing costs to a minimum while meeting busines
 - Expenditure awareness: cloud introduces a need to be proactive about usage and cost, because the supply is unlimited; if you aren't monitoring what you are using, the costs could escalate quickly and surprise you. Billing alerts are a must to set up.
     - What controls do you have in place to govern your cost usage? How do you monitor and decommission resources no longer needed?
 - Optimizing over time: keep track of changes in AWS over time, and keeping tabs on the newer services to see if a newer offering makes more sense now for your unique business model
+
+## Operational Excellence
+
+This is all about operational practices and processes to manage production workloads, including handling downtime, change response events, and documenting and testing all automation.
+
+## OE Design Principles
+
+- Do all operations with code when possible (infrastructure as code as an example)
+- Align operational processes with business objectives (i.e. do what needs to be done)
+- Make small, incremental updates to core services, rather than huge changes (i.e. small prod deployments)
+- Test for responses to unexpected events/failures (i.e. think of Netflix simian army)
+- Learn from events and failures in production
+- Keep documentation of processes current
+
+## OE - Three Key Areas
+
+- `Preparation` - checklists for prod; runbooks (how to do operational daily tasks); playbooks (how to respond to events/failures in operational windows); use AWS CloudFormation, Config, and Autoscaling as services to help with these problems and documentation
+- `Operation` - changes should be small; should be tested by quality assurance, frequent changes with defined and tested rollback strategies are best. CI/CD pipelines are important for this. Services include CodeCommit, CodeDeploy, and CodePipeline. CloudTrail for audits.
+- `Response` - automate responses for all situations, including alerts, mitigation, remediation, rollback, and/or recovery. These should also be thoroughly tested, and hierarchical escalations should be put in place when appropriate
