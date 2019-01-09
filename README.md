@@ -51,4 +51,8 @@ Notes, practice exam questions, and preparations for the AWS Solutions Architect
 
 ## Additional Preparation
 
+### Practice Tests Prep
+
+* [Minitest Attempts](./minitest-attempts/README.md)
+
 * Users state that taking multiple practice exams from WhizLabs and AWS's own practice exams was a good benchmark of knowledge, once you feel that you've studied enough
