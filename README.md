@@ -13,6 +13,7 @@ Notes, practice exam questions, and preparations for the AWS Solutions Architect
 * [Database Migration Service](./dms/notes.md)
 * [Dynamo DB](./dynamo-db/notes.md)
 * [EC2](./ec2/notes.md)
+* [ECS](./ecs/notes.md)
 * [EFS](./efs/notes.md)
 * [Elastic Beanstalk](./elastic-beanstalk/notes.md)
 * [Elastic Transcoder](./elastic-transcoder/notes.md)
